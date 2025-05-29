@@ -19,12 +19,14 @@ def create_app():
         # Import blueprints
         from src.api.models.user import user_bp
         from src.api.models.quiz_route import quiz_bp
+        from src.api.models.demo import demo_bp
         from src.api.auth.auth import auth_bp, google_bp
 
         # register blueprints
         app.register_blueprint(user_bp)
         app.register_blueprint(quiz_bp)
         app.register_blueprint(auth_bp)
+        app.register_blueprint(demo_bp)
         app.register_blueprint(google_bp)
 
 

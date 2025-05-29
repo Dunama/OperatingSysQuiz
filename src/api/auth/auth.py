@@ -35,9 +35,12 @@ def callback():
     google_info = user_info.json()
     email = google_info.get("email")
     name = google_info.get("name")
+    # validate user info
+    if not email or not name:
+        return jsonify({"error": "Invalid user info from google"}), 400
 
     # find or create user
-    user_record = UserModel.query.filter_by(name=name, email=email).first()
+    user_record = UserModel.query.filter_by(email=email).first()
     try:
         if not user_record:
             user_record = UserModel(name=name, email=email)
