@@ -46,14 +46,11 @@
                 <button id="next-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">
                     Next
                 </button>
+                
+                <button id="submit-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg hidden">
+                    Submit Answers
+                </button>
             </div>
-        </div>
-        
-        <div id="submit-container" class="text-center hidden">
-            <button id="submit-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg opacity-50 cursor-not-allowed" disabled>
-                Submit Answers
-            </button>
-            <p class="text-sm text-gray-600 mt-2">You must answer all questions before submitting</p>
         </div>
         
         <div id="results-container" class="bg-white rounded-lg shadow-md p-6 hidden">
@@ -94,7 +91,6 @@
         // DOM elements
         const loadingEl = document.getElementById('loading');
         const quizContainerEl = document.getElementById('quiz-container');
-        const submitContainerEl = document.getElementById('submit-container');
         const resultsContainerEl = document.getElementById('results-container');
         const questionTextEl = document.getElementById('question-text');
         const optionsContainerEl = document.getElementById('options-container');
@@ -199,17 +195,18 @@
             // Show "Next" or "Submit" based on question index
             if (currentQuestionIndex === questions.length - 1) {
                 nextBtnEl.classList.add('hidden');
-                submitContainerEl.classList.remove('hidden');
+                submitBtnEl.classList.remove('hidden');
             } else {
                 nextBtnEl.classList.remove('hidden');
-                submitContainerEl.classList.add('hidden');
+                submitBtnEl.classList.add('hidden');
             }
             
-            // Enable/disable submit button based on whether all questions are answered
-            submitBtnEl.disabled = !areAllQuestionsAnswered();
+            // Update submit button state
             if (areAllQuestionsAnswered()) {
+                submitBtnEl.disabled = false;
                 submitBtnEl.classList.remove('opacity-50', 'cursor-not-allowed');
             } else {
+                submitBtnEl.disabled = true;
                 submitBtnEl.classList.add('opacity-50', 'cursor-not-allowed');
             }
         }
@@ -272,6 +269,14 @@
         
         // Submit the quiz
         async function submitQuiz() {
+            // Prevent multiple submissions
+            if (submitBtnEl.disabled) return;
+            
+            // Disable the submit button
+            submitBtnEl.disabled = true;
+            submitBtnEl.classList.add('opacity-50', 'cursor-not-allowed');
+            submitBtnEl.textContent = 'Submitting...';
+            
             clearInterval(timerInterval);
             
             // Calculate total time spent
@@ -295,6 +300,11 @@
             } catch (error) {
                 console.error('Error:', error);
                 alert('Failed to submit test: ' + error.message);
+                
+                // Re-enable the submit button in case of error
+                submitBtnEl.disabled = false;
+                submitBtnEl.classList.remove('opacity-50', 'cursor-not-allowed');
+                submitBtnEl.textContent = 'Submit Answers';
             }
         }
         
@@ -302,7 +312,6 @@
         function displayResults(results) {
             // Hide quiz containers and show results
             quizContainerEl.classList.add('hidden');
-            submitContainerEl.classList.add('hidden');
             resultsContainerEl.classList.remove('hidden');
             
             // Update score display
@@ -360,7 +369,10 @@
         }
         
         // Event listeners
-        document.addEventListener('DOMContentLoaded', fetchQuestions);
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize quiz
+            fetchQuestions();
+        });
         
         prevBtnEl.addEventListener('click', () => {
             if (currentQuestionIndex > 0) {
@@ -376,6 +388,7 @@
             }
         });
         
+        // Single submit button event listener
         submitBtnEl.addEventListener('click', submitQuiz);
         
         retryBtnEl.addEventListener('click', () => {
