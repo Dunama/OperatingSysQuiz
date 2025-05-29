@@ -8,21 +8,24 @@ def create_app():
     app.config.from_object(Config)
     # Init db
     db.init_app(app)
-    Migrate(app, db)
+    migrate = Migrate(app, db)
 
 
     with app.app_context():
         # Import models
-        from src.db.models.quiz_db import Pat, Questions, Options, Answers, Response
+        from src.db.models.quiz_db import User, Questions, Options, Answers, Response
     
 
         # Import blueprints
-        from src.api.models.pat import pat_bp
+        from src.api.models.user import user_bp
         from src.api.models.quiz_route import quiz_bp
+        from src.api.auth.auth import auth_bp, google_bp
 
         # register blueprints
-        app.register_blueprint(pat_bp)
+        app.register_blueprint(user_bp)
         app.register_blueprint(quiz_bp)
+        app.register_blueprint(auth_bp)
+        app.register_blueprint(google_bp)
 
 
     return app

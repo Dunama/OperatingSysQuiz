@@ -30,7 +30,7 @@ def check_answers():
     data = request.get_json()
     question_no = data.get('question_no')
     user_ans = data.get('user_ans')
-    pat_id = data.get('pat_id')
+    user_id = data.get('user_id')
 
     # Get the question from the database
     question = Questions.query.filter_by(question_no=question_no).first()
@@ -50,7 +50,7 @@ def check_answers():
 
     # Save the user's response
     user_response = Response(
-        pat_id=pat_id,
+        user_id=user_id,
         answers_id=answer.answer_id,
         correct_answer=answer.correct_answer,
         question_no=question_no,

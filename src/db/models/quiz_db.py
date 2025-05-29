@@ -1,6 +1,6 @@
 from src.db.core import db
 
-class Pat(db.Model):
+class User(db.Model):
     __tablename__= 'pat'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
