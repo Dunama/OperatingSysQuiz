@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, url_for,jsonify, session, current_app
+from flask import Blueprint, redirect, url_for,jsonify, session, current_app, render_template
 from flask_dance.contrib.google import make_google_blueprint, google
 import os
 from src.db.core import db
@@ -14,6 +14,14 @@ google_bp = make_google_blueprint(
     scope = ["profile","email"],
     redirect_to = "auth.callback"
 )
+
+@auth_bp.route("/signup")
+def signup():
+    '''render signup page with Google OAuth'''
+    if google.authorized:
+        # If already logged in, redirect to callback
+        return redirect(url_for("auth.callback"))
+    return render_template('signup.html')
 
 @auth_bp.route("/login")
 def login():

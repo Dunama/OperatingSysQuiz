@@ -43,13 +43,11 @@
                 <button id="next-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">
                     Next
                 </button>
+                
+                <button id="submit-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg hidden">
+                    Submit Answers
+                </button>
             </div>
-        </div>
-        
-        <div id="submit-container" class="text-center hidden">
-            <button id="submit-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg">
-                Submit Answers
-            </button>
         </div>
         
         <div id="results-container" class="bg-white rounded-lg shadow-md p-6 hidden">
@@ -89,7 +87,6 @@
         // DOM elements
         const loadingEl = document.getElementById('loading');
         const quizContainerEl = document.getElementById('quiz-container');
-        const submitContainerEl = document.getElementById('submit-container');
         const resultsContainerEl = document.getElementById('results-container');
         const questionTextEl = document.getElementById('question-text');
         const optionsContainerEl = document.getElementById('options-container');
@@ -194,18 +191,18 @@
             // Show "Next" or "Submit" based on question index
             if (currentQuestionIndex === questions.length - 1) {
                 nextBtnEl.classList.add('hidden');
-                submitContainerEl.classList.remove('hidden');
+                submitBtnEl.classList.remove('hidden');
+                
+                // Enable/disable submit button based on whether all questions are answered
+                submitBtnEl.disabled = !areAllQuestionsAnswered();
+                if (areAllQuestionsAnswered()) {
+                    submitBtnEl.classList.remove('opacity-50', 'cursor-not-allowed');
+                } else {
+                    submitBtnEl.classList.add('opacity-50', 'cursor-not-allowed');
+                }
             } else {
                 nextBtnEl.classList.remove('hidden');
-                submitContainerEl.classList.add('hidden');
-            }
-            
-            // Enable/disable submit button based on whether all questions are answered
-            submitBtnEl.disabled = !areAllQuestionsAnswered();
-            if (areAllQuestionsAnswered()) {
-                submitBtnEl.classList.remove('opacity-50', 'cursor-not-allowed');
-            } else {
-                submitBtnEl.classList.add('opacity-50', 'cursor-not-allowed');
+                submitBtnEl.classList.add('hidden');
             }
         }
         
@@ -224,11 +221,9 @@
         
         // Update the timer display
         function updateTimer() {
-            const elapsedTime = Math.floor((new Date() - startTime) / 1000);
-            timeLeft = TIMER_DURATION - elapsedTime;
-
-            // Clamp timeLeft to zero
-            if (timeLeft < 0) timeLeft = 0;
+            const currentTime = new Date();
+            const elapsedTime = Math.floor((currentTime - startTime) / 1000);
+            timeLeft = Math.max(0, TIMER_DURATION - elapsedTime);
 
             // Calculate minutes and seconds for elapsed and left
             const minutesElapsed = Math.floor(elapsedTime / 60).toString().padStart(2, '0');
@@ -238,6 +233,9 @@
 
             // Display both elapsed and left
             timerEl.textContent = `Time: ${minutesElapsed}:${secondsElapsed} | Left: ${minutesLeft}:${secondsLeft}`;
+
+            // Store the total time for results
+            totalQuizTime = elapsedTime;
 
             // Reset timer color
             timerEl.classList.remove('text-yellow-500', 'text-red-600', 'animate-pulse');
@@ -269,8 +267,7 @@
         async function submitQuiz() {
             clearInterval(timerInterval);
             
-            // Calculate total time spent
-            totalQuizTime = Math.floor((new Date() - startTime) / 1000);
+            // Calculate total time spent (already tracked in updateTimer)
             
             try {
                 const response = await fetch('/demo', {
@@ -297,17 +294,23 @@
         function displayResults(results) {
             // Hide quiz containers and show results
             quizContainerEl.classList.add('hidden');
-            submitContainerEl.classList.add('hidden');
             resultsContainerEl.classList.remove('hidden');
             
             // Update score display
             document.getElementById('score-display').textContent = `${results.score}/${results.total}`;
             document.getElementById('percentage-display').textContent = `${results.percentage.toFixed(0)}%`;
             
-            // Display time spent
-            const minutes = Math.floor(totalQuizTime / 60);
+            // Display time spent with proper formatting
+            const hours = Math.floor(totalQuizTime / 3600);
+            const minutes = Math.floor((totalQuizTime % 3600) / 60);
             const seconds = totalQuizTime % 60;
-            const timeUsedText = `Time used: ${minutes}min ${seconds}sec`;
+            
+            let timeUsedText = '';
+            if (hours > 0) {
+                timeUsedText = `Time used: ${hours}hr ${minutes}min ${seconds}sec`;
+            } else {
+                timeUsedText = `Time used: ${minutes}min ${seconds}sec`;
+            }
             
             // Add time spent information below percentage
             const percentageDisplay = document.getElementById('percentage-display');
@@ -366,17 +369,9 @@
                 detailedResultsEl.appendChild(resultEl);
             });
             
-            // Display total time spent
-            const totalTimeSpent = Math.floor((new Date() - startTime) / 1000);
-            const minutesSpent = Math.floor(totalTimeSpent / 60);
-            const secondsSpent = totalTimeSpent % 60;
-            const timeSpentString = `Total time: ${minutesSpent}m ${secondsSpent}s`;
-            
-            const timeSpentEl = document.createElement('div');
-            timeSpentEl.className = 'mt-4 text-center text-gray-600 font-medium';
-            timeSpentEl.textContent = timeSpentString;
-            
-            resultsContainerEl.appendChild(timeSpentEl);
+            // Remove the duplicate time spent element that was being added at the end
+            const existingTimeSpentElements = resultsContainerEl.querySelectorAll('.mt-4.text-center.text-gray-600.font-medium');
+            existingTimeSpentElements.forEach(el => el.remove());
         }
         
         // Event listeners
@@ -415,12 +410,14 @@
             updateButtonStates();
         });
         
-        // Listen for keyboard events for option selection (A-D)
+        // Enhanced keyboard navigation
         document.addEventListener('keydown', function(event) {
             // Only respond if quiz is visible and not in results
-            if (quizContainerEl.classList.contains('hidden') || resultsContainerEl.classList.contains('block')) return;
+            if (quizContainerEl.classList.contains('hidden') || 
+                resultsContainerEl.classList.contains('visible') || 
+                resultsContainerEl.classList.contains('block')) return;
 
-            // Map keys a-d/A-D to option labels
+            // Handle option selection with A-D keys
             const key = event.key.toLowerCase();
             if (key >= 'a' && key <= 'd') {
                 const question = questions[currentQuestionIndex];
@@ -443,6 +440,25 @@
                     }
                     // Update button states
                     updateButtonStates();
+                }
+            }
+            
+            // Navigation with arrow keys
+            if (event.key === 'ArrowLeft' && !prevBtnEl.disabled) {
+                // Go to previous question
+                prevBtnEl.click();
+                event.preventDefault(); // Prevent scrolling
+            } 
+            else if (event.key === 'ArrowRight') {
+                if (!nextBtnEl.classList.contains('hidden')) {
+                    // Go to next question if next button is visible
+                    nextBtnEl.click();
+                    event.preventDefault(); // Prevent scrolling
+                } 
+                else if (currentQuestionIndex === questions.length - 1 && !submitBtnEl.disabled) {
+                    // Submit if on last question and submit button is enabled
+                    submitBtnEl.click();
+                    event.preventDefault(); // Prevent scrolling
                 }
             }
         });

@@ -19,8 +19,9 @@ def create_app():
         # Import blueprints
         from src.api.models.user import user_bp
         from src.api.models.quiz_route import quiz_bp
-        from src.api.models.demo import demo_bp
-        from src.api.models.test import test_bp
+        from src.api.models.demoRun import demo_bp
+        from src.api.models.practiceQuiz import practice_bp
+        from src.api.models.questionBank import comprehensive_bp
         from src.api.auth.auth import auth_bp, google_bp
 
         # register blueprints
@@ -28,7 +29,8 @@ def create_app():
         app.register_blueprint(quiz_bp)
         app.register_blueprint(auth_bp)
         app.register_blueprint(demo_bp)
-        app.register_blueprint(test_bp)
+        app.register_blueprint(practice_bp)
+        app.register_blueprint(comprehensive_bp)
         app.register_blueprint(google_bp)
 
 
