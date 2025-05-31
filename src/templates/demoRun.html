@@ -7,64 +7,64 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 min-h-screen">
-    <div class="container mx-auto px-4 py-8 max-w-3xl">
+    <div class="container mx-auto px-2 py-6 sm:px-4 sm:py-8 max-w-full sm:max-w-2xl md:max-w-3xl">
         <!-- Removed the Quiz Demo title here -->
         
-        <div id="loading" class="text-center py-10">
-            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-700 mx-auto"></div>
-            <p class="mt-4 text-gray-700">Loading questions...</p>
+        <div id="loading" class="text-center py-8 sm:py-10">
+            <div class="animate-spin rounded-full h-8 w-8 sm:h-12 sm:w-12 border-b-2 border-blue-700 mx-auto"></div>
+            <p class="mt-2 sm:mt-4 text-gray-700 text-xs sm:text-base">Loading questions...</p>
         </div>
         
-        <div id="quiz-container" class="bg-white rounded-lg shadow-md p-6 mb-6 hidden">
-            <div class="flex justify-between items-center mb-4">
-                <span id="question-counter" class="text-gray-600 font-medium">Question 1 of 5</span>
-                <span id="timer" class="text-gray-600 font-medium">Time: 00:00</span>
+        <div id="quiz-container" class="bg-white rounded-lg shadow-md p-3 sm:p-6 mb-4 sm:mb-6 hidden">
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-2 sm:mb-4 gap-2">
+                <span id="question-counter" class="text-gray-600 font-medium text-xs sm:text-base">Question 1 of 5</span>
+                <span id="timer" class="text-gray-600 font-medium text-xs sm:text-base">Time: 00:00</span>
             </div>
             
-            <div id="question-container" class="mb-8">
-                <h2 id="question-text" class="text-xl font-semibold mb-4">Question text will appear here</h2>
-                <div id="options-container" class="space-y-3">
+            <div id="question-container" class="mb-6 sm:mb-8">
+                <h2 id="question-text" class="text-base sm:text-xl font-semibold mb-2 sm:mb-4">Question text will appear here</h2>
+                <div id="options-container" class="space-y-2 sm:space-y-3">
                     <!-- Options will be dynamically inserted here -->
                 </div>
             </div>
             
-            <div class="flex justify-between mt-8">
-                <button id="prev-btn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed">
+            <div class="flex flex-col sm:flex-row justify-between mt-6 sm:mt-8 gap-2">
+                <button id="prev-btn" class="w-full sm:w-auto bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-2 sm:px-6 rounded-lg text-xs sm:text-base disabled:opacity-50 disabled:cursor-not-allowed">
                     Previous
                 </button>
                 
-                <div>
-                    <span id="progress-text" class="mr-4 font-medium">1/5</span>
-                    <div class="w-40 h-2 bg-gray-200 rounded-full inline-block align-middle">
+                <div class="flex flex-col sm:flex-row items-center gap-2">
+                    <span id="progress-text" class="mr-0 sm:mr-4 font-medium text-xs sm:text-base">1/5</span>
+                    <div class="w-full sm:w-40 h-2 bg-gray-200 rounded-full inline-block align-middle">
                         <div id="progress-bar" class="h-2 bg-blue-600 rounded-full" style="width: 20%"></div>
                     </div>
                 </div>
                 
-                <button id="next-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">
+                <button id="next-btn" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-2 sm:px-6 rounded-lg text-xs sm:text-base">
                     Next
                 </button>
                 
-                <button id="submit-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg hidden">
+                <button id="submit-btn" class="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-2 sm:px-6 rounded-lg text-xs sm:text-base hidden">
                     Submit Answers
                 </button>
             </div>
         </div>
         
-        <div id="results-container" class="bg-white rounded-lg shadow-md p-6 hidden">
-            <h2 class="text-2xl font-bold text-center mb-4">Quiz Results</h2>
-            <div class="text-center mb-8">
-                <div class="inline-block w-48 h-48 rounded-full border-8 border-green-500 flex items-center justify-center"> <!-- Increased size -->
-                    <span id="score-display" class="text-5xl font-bold">0/5</span> <!-- Increased font size -->
+        <div id="results-container" class="bg-white rounded-lg shadow-md p-3 sm:p-6 hidden">
+            <h2 class="text-xl sm:text-2xl font-bold text-center mb-2 sm:mb-4">Quiz Results</h2>
+            <div class="text-center mb-6 sm:mb-8">
+                <div class="inline-block w-32 h-32 sm:w-48 sm:h-48 rounded-full border-8 border-green-500 flex items-center justify-center">
+                    <span id="score-display" class="text-3xl sm:text-5xl font-bold">0/5</span>
                 </div>
-                <p class="mt-4 text-3xl font-medium" id="percentage-display">0%</p> <!-- Increased font size and margin, moved below -->
+                <p class="mt-2 sm:mt-4 text-2xl sm:text-3xl font-medium" id="percentage-display">0%</p>
             </div>
             
-            <div id="detailed-results" class="space-y-4">
+            <div id="detailed-results" class="space-y-2 sm:space-y-4">
                 <!-- Detailed results will be inserted here -->
             </div>
             
-            <div class="text-center mt-8">
-                <button id="retry-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">
+            <div class="text-center mt-6 sm:mt-8">
+                <button id="retry-btn" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-2 sm:px-6 rounded-lg text-xs sm:text-base">
                     Try Again
                 </button>
             </div>
@@ -102,7 +102,7 @@
         // Fetch questions from API
         async function fetchQuestions() {
             try {
-                const response = await fetch('/demo');
+                const response = await fetch('/api/demo/questions/submit');
                 if (!response.ok) {
                     throw new Error('Failed to fetch questions');
                 }
@@ -128,14 +128,10 @@
         function displayQuestion(index) {
             const question = questions[index];
             questionTextEl.textContent = question.question;
-            
-            // Clear options container
             optionsContainerEl.innerHTML = '';
-            
-            // Add options
             question.options.forEach(option => {
                 const optionEl = document.createElement('div');
-                optionEl.className = 'flex items-center space-x-3 p-3 border rounded-lg transition-colors hover:bg-gray-50';
+                optionEl.className = 'flex items-center space-x-2 sm:space-x-3 p-2 sm:p-3 border rounded-lg transition-colors hover:bg-gray-50 w-full';
                 
                 // Set selected state if user has already answered
                 if (userAnswers[question.question_no] === option.label) {
@@ -144,9 +140,9 @@
                 
                 optionEl.innerHTML = `
                     <input type="radio" name="q${question.question_no}" id="option-${option.label}" 
-                           class="form-radio h-5 w-5 text-blue-600" value="${option.label}"
+                           class="form-radio h-4 w-4 sm:h-5 sm:w-5 text-blue-600" value="${option.label}"
                            ${userAnswers[question.question_no] === option.label ? 'checked' : ''}>
-                    <label for="option-${option.label}" class="flex-1 cursor-pointer">
+                    <label for="option-${option.label}" class="flex-1 cursor-pointer text-xs sm:text-base">
                         <span class="font-medium">${option.label}.</span> ${option.text}
                     </label>
                 `;
@@ -270,7 +266,7 @@
             // Calculate total time spent (already tracked in updateTimer)
             
             try {
-                const response = await fetch('/demo', {
+                const response = await fetch('/api/demo/questions/submit', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

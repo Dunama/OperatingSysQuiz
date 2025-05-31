@@ -5,7 +5,7 @@ from src.db.models.quiz_db import Questions, Answers, Options, Response
 demo_bp = Blueprint('demo', __name__)
 @demo_bp.route('/api/demo/questions', methods=['GET'])
 def demo_view():
-    return render_template('demo.html')
+    return render_template('demoRun.html')
 
 @demo_bp.route('/api/demo/questions/submit', methods=['GET', 'POST'])
 def demo_question():
