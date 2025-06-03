@@ -13,4 +13,8 @@ class Config:
     # Google OAuth2 config
     GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
     GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
-    GOOGLE_REDIRECT_URI = os.getenv("GOOGLE_REDIRECT_URI", "http://localhost:5000/login/google/authorized")
+    GOOGLE_REDIRECT_URI = os.getenv("GOOGLE_REDIRECT_URI", "https://os205quizapp.online/login/google/authorized")
+    
+    # For production
+    OAUTHLIB_INSECURE_TRANSPORT = os.getenv("OAUTHLIB_INSECURE_TRANSPORT", "False").lower() == "true"
+    OAUTHLIB_RELAX_TOKEN_SCOPE = True
