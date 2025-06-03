@@ -2,7 +2,6 @@ from flask import Flask, redirect, url_for
 from flask_migrate import Migrate
 from src.config import Config
 from src.db.core import db
-from sqlalchemy import MetaData
 import os
 
 def create_app():
@@ -11,19 +10,7 @@ def create_app():
                 template_folder='templates')
     app.config.from_object(Config)
     
-    # Add naming convention for constraints (fixes migration issues)
-    convention = {
-        "ix": 'ix_%(column_0_label)s',
-        "uq": "uq_%(table_name)s_%(column_0_name)s",
-        "ck": "ck_%(table_name)s_%(constraint_name)s",
-        "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
-        "pk": "pk_%(table_name)s"
-    }
-    
-    metadata = MetaData(naming_convention=convention)
-    db.metadata = metadata
-    
-    # Init db
+    # Initialize the database
     db.init_app(app)
     
     # Only create migrate in development
@@ -45,7 +32,7 @@ def create_app():
         from src.api.models.questionBank import comprehensive_bp
         from src.api.auth.auth import auth_bp, google_bp
 
-        # register blueprints
+        # Register blueprints
         app.register_blueprint(quiz_bp)
         app.register_blueprint(auth_bp)
         app.register_blueprint(demo_bp)
