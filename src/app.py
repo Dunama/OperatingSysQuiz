@@ -3,6 +3,7 @@ from flask_migrate import Migrate
 from src.config import Config
 from src.db.core import db
 from sqlalchemy import MetaData
+import os
 
 def create_app():
     app = Flask(__name__,
@@ -24,7 +25,10 @@ def create_app():
     
     # Init db
     db.init_app(app)
-    migrate = Migrate(app, db)
+    
+    # Only create migrate in development
+    if not os.getenv("VERCEL_ENV"):
+        migrate = Migrate(app, db)
     
     @app.route('/')
     def index():
