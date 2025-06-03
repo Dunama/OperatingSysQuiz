@@ -1,20 +1,25 @@
-from flask import Flask
+from flask import Flask, redirect, url_for
 from flask_migrate import Migrate
 from src.config import Config
 from src.db.core import db
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__,
+                static_folder='static',
+                template_folder='templates')
     app.config.from_object(Config)
     # Init db
     db.init_app(app)
     migrate = Migrate(app, db)
-
+    
+    @app.route('/')
+    def index():
+        return redirect(url_for('auth.login'))
 
     with app.app_context():
         # Import models
         from src.db.models.quiz_db import User, Questions, Options, Answers, Response
-    
+
 
         # Import blueprints
         from src.api.models.quiz_route import quiz_bp
