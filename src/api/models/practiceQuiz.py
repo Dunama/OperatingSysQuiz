@@ -13,12 +13,13 @@ def practice_question():
     '''view practice questions'''
     if request.method == 'GET':
         # fetch random questions 1-70 from the database
-        all_questions = Questions.query.filter(Questions.question_no.between(1, 70)).all()
+        all_questions = Questions.query.filter(Questions.question_no.between(1, 71)).all()
         practice_questions = r.sample(all_questions, len(all_questions))
         question_ids = [q.question_id for q in practice_questions]
         all_correct_answers = {a.question_id: a.correct_answer for a in Answers.query.filter(Answers.question_id.in_(question_ids)).all()}
         if not practice_questions:
             return jsonify({'error': 'No practice questions found'}), 404
+        
         
         result = []
         for question in practice_questions:

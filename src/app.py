@@ -21,7 +21,9 @@ def create_app():
     def index():
         return redirect(url_for('auth.login'))
 
+
     with app.app_context():
+    
         # Import models
         from src.db.models.quiz_db import User, Questions, Options, Answers, Response
 
@@ -40,7 +42,7 @@ def create_app():
         app.register_blueprint(comprehensive_bp)
         app.register_blueprint(google_bp)
 
-    return app
+    return app   
 
 # For Vercel
 app = create_app()

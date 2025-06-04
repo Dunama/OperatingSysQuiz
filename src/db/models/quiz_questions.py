@@ -1310,445 +1310,445 @@ quiz_questions = [
         "answer": "c"
     },
     {
-    "question_number": 121,
-    "question": "A page fault occurs when?",
-    "options": {
-      "a": "a page gives inconsistent data",
-      "b": "a page cannot be accessed due to its absence from memory",
-      "c": "a page is invisible",
-      "d": "all of the mentioned"
+        "question_no": 121,
+        "question": "A page fault occurs when?",
+        "options": [
+            {"label": "a", "text": "a page gives inconsistent data"},
+            {"label": "b", "text": "a page cannot be accessed due to its absence from memory"},
+            {"label": "c", "text": "a page is invisible"},
+            {"label": "d", "text": "all of the mentioned"}
+        ],
+        "answer": "b"
     },
-    "answer": "b"
-  },
-  {
-    "question_number": 122,
-    "question": "When a page fault occurs, the state of the interrupted process is ____________",
-    "options": {
-      "a": "disrupted",
-      "b": "invalid",
-      "c": "saved",
-      "d": "none of the mentioned"
+    {
+        "question_no": 122,
+        "question": "When a page fault occurs, the state of the interrupted process is ____________",
+        "options": [
+            {"label": "a", "text": "disrupted"},
+            {"label": "b", "text": "invalid"},
+            {"label": "c", "text": "saved"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "c"
     },
-    "answer": "c"
-  },
-  {
-    "question_number": 123,
-    "question": "When a process begins execution with no pages in memory?",
-    "options": {
-      "a": "process execution becomes impossible",
-      "b": "a page fault occurs for every page brought into memory",
-      "c": "process causes system crash",
-      "d": "none of the mentioned"
+    {
+        "question_no": 123,
+        "question": "When a process begins execution with no pages in memory?",
+        "options": [
+            {"label": "a", "text": "process execution becomes impossible"},
+            {"label": "b", "text": "a page fault occurs for every page brought into memory"},
+            {"label": "c", "text": "process causes system crash"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "b"
     },
-    "answer": "b"
-  },
-  {
-    "question_number": 124,
-    "question": "If the memory access time is denoted by ‘ma’ and ‘p’ is the probability of a page fault (0 <= p <= 1). Then the effective access time for a demand paged memory is ____________",
-    "options": {
-      "a": "p x ma + (1-p) x page fault time",
-      "b": "ma + page fault time",
-      "c": "(1-p) x ma + p x page fault time",
-      "d": "none of the mentioned"
+    {
+        "question_no": 124,
+        "question": "If the memory access time is denoted by ‘ma’ and ‘p’ is the probability of a page fault (0 <= p <= 1). Then the effective access time for a demand paged memory is ____________",
+        "options": [
+            {"label": "a", "text": "p x ma + (1-p) x page fault time"},
+            {"label": "b", "text": "ma + page fault time"},
+            {"label": "c", "text": "(1-p) x ma + p x page fault time"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "c"
     },
-    "answer": "c"
-  },
-  {
-    "question_number": 125,
-    "question": "When the page fault rate is low ____________",
-    "options": {
-      "a": "the turnaround time increases",
-      "b": "the effective access time increases",
-      "c": "the effective access time decreases",
-      "d": "turnaround time & effective access time increases"
+    {
+        "question_no": 125,
+        "question": "When the page fault rate is low ____________",
+        "options": [
+            {"label": "a", "text": "the turnaround time increases"},
+            {"label": "b", "text": "the effective access time increases"},
+            {"label": "c", "text": "the effective access time decreases"},
+            {"label": "d", "text": "turnaround time & effective access time increases"}
+        ],
+        "answer": "c"
     },
-    "answer": "c"
-  },
-  {
-    "question_number": 126,
-    "question": "Locality of reference implies that the page reference being made by a process ____________",
-    "options": {
-      "a": "will always be to the page used in the previous page reference",
-      "b": "is likely to be one of the pages used in the last few page references",
-      "c": "will always be one of the pages existing in memory",
-      "d": "will always lead to page faults"
+    {
+        "question_no": 126,
+        "question": "Locality of reference implies that the page reference being made by a process ____________",
+        "options": [
+            {"label": "a", "text": "will always be to the page used in the previous page reference"},
+            {"label": "b", "text": "is likely to be one of the pages used in the last few page references"},
+            {"label": "c", "text": "will always be one of the pages existing in memory"},
+            {"label": "d", "text": "will always lead to page faults"}
+        ],
+        "answer": "b"
     },
-    "answer": "b"
-  },
-  {
-    "question_number": 127,
-    "question": "Virtual memory allows ____________",
-    "options": {
-      "a": "execution of a process that may not be completely in memory",
-      "b": "a program to be smaller than the physical memory",
-      "c": "a program to be larger than the secondary storage",
-      "d": "execution of a process without being in physical memory"
+    {
+        "question_no": 127,
+        "question": "Virtual memory allows ____________",
+        "options": [
+            {"label": "a", "text": "execution of a process that may not be completely in memory"},
+            {"label": "b", "text": "a program to be smaller than the physical memory"},
+            {"label": "c", "text": "a program to be larger than the secondary storage"},
+            {"label": "d", "text": "execution of a process without being in physical memory"}
+        ],
+        "answer": "a"
     },
-    "answer": "a"
-  },
-  {
-    "question_number": 128,
-    "question": "The instruction being executed, must be in ____________",
-    "options": {
-      "a": "physical memory",
-      "b": "logical memory",
-      "c": "physical & logical memory",
-      "d": "none of the mentioned"
+    {
+        "question_no": 128,
+        "question": "The instruction being executed, must be in ____________",
+        "options": [
+            {"label": "a", "text": "physical memory"},
+            {"label": "b", "text": "logical memory"},
+            {"label": "c", "text": "physical & logical memory"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "a"
     },
-    "answer": "a"
-  },
-  {
-    "question_number": 129,
-    "question": "Error handler codes, to handle unusual errors are ____________",
-    "options": {
-      "a": "almost never executed",
-      "b": "executed very often",
-      "c": "executed periodically",
-      "d": "none of the mentioned"
+    {
+        "question_no": 129,
+        "question": "Error handler codes, to handle unusual errors are ____________",
+        "options": [
+            {"label": "a", "text": "almost never executed"},
+            {"label": "b", "text": "executed very often"},
+            {"label": "c", "text": "executed periodically"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "a"
     },
-    "answer": "a"
-  },
-  {
-    "question_number": 130,
-    "question": "Spooling ____________",
-    "options": {
-      "a": "holds a copy of the data",
-      "b": "is fast memory",
-      "c": "holds the only copy of the data",
-      "d": "holds output for a device"
+    {
+        "question_no": 130,
+        "question": "Spooling ____________",
+        "options": [
+            {"label": "a", "text": "holds a copy of the data"},
+            {"label": "b", "text": "is fast memory"},
+            {"label": "c", "text": "holds the only copy of the data"},
+            {"label": "d", "text": "holds output for a device"}
+        ],
+        "answer": "c"
     },
-    "answer": "c"
-  },
-  {
-    "question_number": 131,
-    "question": "The ________ keeps state information about the use of I/O components.",
-    "options": {
-      "a": "CPU",
-      "b": "OS",
-      "c": "kernel",
-      "d": "shell"
+    {
+        "question_no": 131,
+        "question": "The ________ keeps state information about the use of I/O components.",
+        "options": [
+            {"label": "a", "text": "CPU"},
+            {"label": "b", "text": "OS"},
+            {"label": "c", "text": "kernel"},
+            {"label": "d", "text": "shell"}
+        ],
+        "answer": "c"
     },
-    "answer": "c"
-  },
-  {
-    "question_number": 132,
-    "question": "The kernel data structures include ____________",
-    "options": {
-      "a": "process table",
-      "b": "open file table",
-      "c": "close file table",
-      "d": "all of the mentioned"
+    {
+        "question_no": 132,
+        "question": "The kernel data structures include ____________",
+        "options": [
+            {"label": "a", "text": "process table"},
+            {"label": "b", "text": "open file table"},
+            {"label": "c", "text": "close file table"},
+            {"label": "d", "text": "all of the mentioned"}
+        ],
+        "answer": "b"
     },
-    "answer": "b"
-  },
-  {
-    "question_number": 133,
-    "question": "Windows NT uses a __________ implementation for I/O.",
-    "options": {
-      "a": "message – passing",
-      "b": "draft – passing",
-      "c": "secondary memory",
-      "d": "cache"
+    {
+        "question_no": 133,
+        "question": "Windows NT uses a __________ implementation for I/O.",
+        "options": [
+            {"label": "a", "text": "message – passing"},
+            {"label": "b", "text": "draft – passing"},
+            {"label": "c", "text": "secondary memory"},
+            {"label": "d", "text": "cache"}
+        ],
+        "answer": "a"
     },
-    "answer": "a"
-  },
-  {
-    "question_number": 134,
-    "question": "A ________ is a full duplex connection between a device driver and a user level process.",
-    "options": {
-      "a": "Bus",
-      "b": "I/O operation",
-      "c": "Stream",
-      "d": "Flow"
+    {
+        "question_no": 134,
+        "question": "A ________ is a full duplex connection between a device driver and a user level process.",
+        "options": [
+            {"label": "a", "text": "Bus"},
+            {"label": "b", "text": "I/O operation"},
+            {"label": "c", "text": "Stream"},
+            {"label": "d", "text": "Flow"}
+        ],
+        "answer": "c"
     },
-    "answer": "c"
-  },
-  {
-    "question_number": 135,
-    "question": "I/O is a _________ in system performance.",
-    "options": {
-      "a": "major factor",
-      "b": "minor factor",
-      "c": "does not matter",
-      "d": "none of the mentioned"
+    {
+        "question_no": 135,
+        "question": "I/O is a _________ in system performance.",
+        "options": [
+            {"label": "a", "text": "major factor"},
+            {"label": "b", "text": "minor factor"},
+            {"label": "c", "text": "does not matter"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "a"
     },
-    "answer": "a"
-  },
-  {
-    "question_number": 136,
-    "question": "If the number of cycles spent busy – waiting is not excessive, then ____________",
-    "options": {
-      "a": "interrupt driven I/O is more efficient than programmed I/O",
-      "b": "programmed I/O is more efficient than interrupt driven I/O",
-      "c": "both programmed and interrupt driven I/O are equally efficient",
-      "d": "none of the mentioned"
+    {
+        "question_no": 136,
+        "question": "If the number of cycles spent busy – waiting is not excessive, then ____________",
+        "options": [
+            {"label": "a", "text": "interrupt driven I/O is more efficient than programmed I/O"},
+            {"label": "b", "text": "programmed I/O is more efficient than interrupt driven I/O"},
+            {"label": "c", "text": "both programmed and interrupt driven I/O are equally efficient"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "b"
     },
-    "answer": "b"
-  },
-  {
-    "question_number": 137,
-    "question": "Buffering is done to ____________",
-    "options": {
-      "a": "cope with device speed mismatch",
-      "b": "cope with device transfer size mismatch",
-      "c": "maintain copy semantics",
-      "d": "all of the mentioned"
+    {
+        "question_no": 137,
+        "question": "Buffering is done to ____________",
+        "options": [
+            {"label": "a", "text": "cope with device speed mismatch"},
+            {"label": "b", "text": "cope with device transfer size mismatch"},
+            {"label": "c", "text": "maintain copy semantics"},
+            {"label": "d", "text": "all of the mentioned"}
+        ],
+        "answer": "d"
     },
-    "answer": "d"
-  },
-  {
-    "question_number": 138,
-    "question": "Caching is ________ spooling.",
-    "options": {
-      "a": "same as",
-      "b": "not the same as",
-      "c": "all of the mentioned",
-      "d": "none of the mentioned"
+    {
+        "question_no": 138,
+        "question": "Caching is ________ spooling.",
+        "options": [
+            {"label": "a", "text": "same as"},
+            {"label": "b", "text": "not the same as"},
+            {"label": "c", "text": "all of the mentioned"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "b"
     },
-    "answer": "b"
-  },
-  {
-    "question_number": 139,
-    "question": "Caching ____________",
-    "options": {
-      "a": "holds a copy of the data",
-      "b": "is fast memory",
-      "c": "holds the only copy of the data",
-      "d": "holds output for a device"
+    {
+        "question_no": 139,
+        "question": "Caching ____________",
+        "options": [
+            {"label": "a", "text": "holds a copy of the data"},
+            {"label": "b", "text": "is fast memory"},
+            {"label": "c", "text": "holds the only copy of the data"},
+            {"label": "d", "text": "holds output for a device"}
+        ],
+        "answer": "a"
     },
-    "answer": "a"
-  },
-  {
-    "question_number": 140,
-    "question": "A ________ is a collection of electronics that can operate a port, a bus, or a device.",
-    "options": {
-      "a": "controller",
-      "b": "driver",
-      "c": "host",
-      "d": "bus"
+    {
+        "question_no": 140,
+        "question": "A ________ is a collection of electronics that can operate a port, a bus, or a device.",
+        "options": [
+            {"label": "a", "text": "controller"},
+            {"label": "b", "text": "driver"},
+            {"label": "c", "text": "host"},
+            {"label": "d", "text": "bus"}
+        ],
+        "answer": "a"
     },
-    "answer": "a"
-  },
-  {
-    "question_no": 141,
-    "question": "An I/O port typically consists of four registers status, control, ________ and ________ registers.",
-    "options": [
-      {"label": "a", "text": "system in, system out"},
-      {"label": "b", "text": "data in, data out"},
-      {"label": "c", "text": "flow in, flow out"},
-      {"label": "d", "text": "input, output"}
-    ],
-    "answer": "b"
-  },
-  {
-    "question_no": 142,
-    "question": "The ______ register is read by the host to get input.",
-    "options": [
-      {"label": "a", "text": "flow in"},
-      {"label": "b", "text": "flow out"},
-      {"label": "c", "text": "data in"},
-      {"label": "d", "text": "data out"}
-    ],
-    "answer": "c"
-  },
-  {
-    "question_no": 143,
-    "question": "The ______ register is written by the host to send output.",
-    "options": [
-      {"label": "a", "text": "status"},
-      {"label": "b", "text": "control"},
-      {"label": "c", "text": "data in"},
-      {"label": "d", "text": "data out"}
-    ],
-    "answer": "d"
-  },
-  {
-    "question_no": 144,
-    "question": "The hardware mechanism that allows a device to notify the CPU is called _______",
-    "options": [
-      {"label": "a", "text": "polling"},
-      {"label": "b", "text": "interrupt"},
-      {"label": "c", "text": "driver"},
-      {"label": "d", "text": "controlling"}
-    ],
-    "answer": "b"
-  },
-  {
-    "question_no": 145,
-    "question": "The CPU hardware has a wire called __________ that the CPU senses after executing every instruction.",
-    "options": [
-      {"label": "a", "text": "interrupt request line"},
-      {"label": "b", "text": "interrupt bus"},
-      {"label": "c", "text": "interrupt receive line"},
-      {"label": "d", "text": "interrupt sense line"}
-    ],
-    "answer": "a"
-  },
-  {
-    "question_no": 146,
-    "question": "The _________ determines the cause of the interrupt, performs the necessary processing and executes a return from the interrupt instruction to return the CPU to the execution state prior to the interrupt.",
-    "options": [
-      {"label": "a", "text": "interrupt request line"},
-      {"label": "b", "text": "device driver"},
-      {"label": "c", "text": "interrupt handler"},
-      {"label": "d", "text": "all of the mentioned"}
-    ],
-    "answer": "c"
-  },
-  {
-    "question_no": 147,
-    "question": "In general the two interrupt request lines are ____________",
-    "options": [
-      {"label": "a", "text": "maskable & non maskable interrupts"},
-      {"label": "b", "text": "blocked & non maskable interrupts"},
-      {"label": "c", "text": "maskable & blocked interrupts"},
-      {"label": "d", "text": "none of the mentioned"}
-    ],
-    "answer": "a"
-  },
-  {
-    "question_no": 148,
-    "question": "The _________ are reserved for events such as unrecoverable memory errors.",
-    "options": [
-      {"label": "a", "text": "non maskable interrupts"},
-      {"label": "b", "text": "blocked interrupts"},
-      {"label": "c", "text": "maskable interrupts"},
-      {"label": "d", "text": "none of the mentioned"}
-    ],
-    "answer": "a"
-  },
-  {
-    "question_no": 149,
-    "question": "The ________ can be turned off by the CPU before the execution of critical instruction sequences that must not be interrupted.",
-    "options": [
-      {"label": "a", "text": "nonmaskable interrupt"},
-      {"label": "b", "text": "blocked interrupt"},
-      {"label": "c", "text": "maskable interrupt"},
-      {"label": "d", "text": "none of the mentioned"}
-    ],
-    "answer": "c"
-  },
-  {
-    "question_no": 150,
-    "question": "The __________ is used by device controllers to request service.",
-    "options": [
-      {"label": "a", "text": "nonmaskable interrupt"},
-      {"label": "b", "text": "blocked interrupt"},
-      {"label": "c", "text": "maskable interrupt"},
-      {"label": "d", "text": "none of the mentioned"}
-    ],
-    "answer": "c"
-  },
-  {
-    "question_no": 151,
-    "question": "The interrupt vector contains ____________",
-    "options": [
-      {"label": "a", "text": "the interrupts"},
-      {"label": "b", "text": "the memory addresses of specialized interrupt handlers"},
-      {"label": "c", "text": "the identifiers of interrupts"},
-      {"label": "d", "text": "the device addresses"}
-    ],
-    "answer": "b"
-  },
-  {
-    "question_no": 152,
-    "question": "Division by zero, accessing a protected or non existent memory address, or attempting to execute a privileged instruction from user mode are all categorized as ________",
-    "options": [
-      {"label": "a", "text": "errors"},
-      {"label": "b", "text": "exceptions"},
-      {"label": "c", "text": "interrupt handlers"},
-      {"label": "d", "text": "all of the mentioned"}
-    ],
-    "answer": "b"
-  },
-  {
-    "question_no": 153,
-    "question": "For large data transfers, _________ is used.",
-    "options": [
-      {"label": "a", "text": "dma"},
-      {"label": "b", "text": "programmed I/O"},
-      {"label": "c", "text": "controller register"},
-      {"label": "d", "text": "none of the mentioned"}
-    ],
-    "answer": "a"
-  },
-  {
-    "question_no": 154,
-    "question": "A character stream device transfers ____________",
-    "options": [
-      {"label": "a", "text": "bytes one by one"},
-      {"label": "b", "text": "block of bytes as a unit"},
-      {"label": "c", "text": "with unpredictable response times"},
-      {"label": "d", "text": "none of the mentioned"}
-    ],
-    "answer": "a"
-  },
-  {
-    "question_no": 155,
-    "question": "A block device transfers ____________",
-    "options": [
-      {"label": "a", "text": "bytes one by one"},
-      {"label": "b", "text": "block of bytes as a unit"},
-      {"label": "c", "text": "with unpredictable response times"},
-      {"label": "d", "text": "none of the mentioned"}
-    ],
-    "answer": "b"
-  },
-  {
-    "question_no": 156,
-    "question": "What is a dedicated device?",
-    "options": [
-      {"label": "a", "text": "opposite to a sharable device"},
-      {"label": "b", "text": "same as a sharable device"},
-      {"label": "c", "text": "can be used concurrently by several processes"},
-      {"label": "d", "text": "none of the mentioned"}
-    ],
-    "answer": "a"
-  },
-  {
-    "question_no": 157,
-    "question": "A keyboard is an example of a device that is accessed through a __________ interface.",
-    "options": [
-      {"label": "a", "text": "block stream"},
-      {"label": "b", "text": "set of blocks"},
-      {"label": "c", "text": "character stream"},
-      {"label": "d", "text": "none of the mentioned"}
-    ],
-    "answer": "c"
-  },
-  {
-    "question_no": 158,
-    "question": "In polling ____________",
-    "options": [
-      {"label": "a", "text": "busy – wait cycles wait for I/O from device"},
-      {"label": "b", "text": "interrupt handler receives interrupts"},
-      {"label": "c", "text": "interrupt-request line is triggered by I/O device"},
-      {"label": "d", "text": "all of the mentioned"}
-    ],
-    "answer": "a"
-  },
-  {
-    "question_no": 159,
-    "question": "A non blocking system call _________________",
-    "options": [
-      {"label": "a", "text": "halts the execution of the application for an extended time"},
-      {"label": "b", "text": "does not halt the execution of the application"},
-      {"label": "c", "text": "does not block the interrupts"},
-      {"label": "d", "text": "none of the mentioned"}
-    ],
-    "answer": "b"
-  },
-  {
-    "question_no": 160,
-    "question": "An asynchronous call ____________",
-    "options": [
-      {"label": "a", "text": "returns immediately, without waiting for the I/O to complete"},
-      {"label": "b", "text": "does not return immediately and waits for the I/O to complete"},
-      {"label": "c", "text": "consumes a lot of time"},
-      {"label": "d", "text": "is too slow"}
-    ],
-    "answer": "a"
-  },
+    {
+        "question_no": 141,
+        "question": "An I/O port typically consists of four registers status, control, ________ and ________ registers.",
+        "options": [
+            {"label": "a", "text": "system in, system out"},
+            {"label": "b", "text": "data in, data out"},
+            {"label": "c", "text": "flow in, flow out"},
+            {"label": "d", "text": "input, output"}
+        ],
+        "answer": "b"
+    },
+    {
+        "question_no": 142,
+        "question": "The ______ register is read by the host to get input.",
+        "options": [
+            {"label": "a", "text": "flow in"},
+            {"label": "b", "text": "flow out"},
+            {"label": "c", "text": "data in"},
+            {"label": "d", "text": "data out"}
+        ],
+        "answer": "c"
+    },
+    {
+        "question_no": 143,
+        "question": "The ______ register is written by the host to send output.",
+        "options": [
+            {"label": "a", "text": "status"},
+            {"label": "b", "text": "control"},
+            {"label": "c", "text": "data in"},
+            {"label": "d", "text": "data out"}
+        ],
+        "answer": "d"
+    },
+    {
+        "question_no": 144,
+        "question": "The hardware mechanism that allows a device to notify the CPU is called _______",
+        "options": [
+            {"label": "a", "text": "polling"},
+            {"label": "b", "text": "interrupt"},
+            {"label": "c", "text": "driver"},
+            {"label": "d", "text": "controlling"}
+        ],
+        "answer": "b"
+    },
+    {
+        "question_no": 145,
+        "question": "The CPU hardware has a wire called __________ that the CPU senses after executing every instruction.",
+        "options": [
+            {"label": "a", "text": "interrupt request line"},
+            {"label": "b", "text": "interrupt bus"},
+            {"label": "c", "text": "interrupt receive line"},
+            {"label": "d", "text": "interrupt sense line"}
+        ],
+        "answer": "a"
+    },
+    {
+        "question_no": 146,
+        "question": "The _________ determines the cause of the interrupt, performs the necessary processing and executes a return from the interrupt instruction to return the CPU to the execution state prior to the interrupt.",
+        "options": [
+            {"label": "a", "text": "interrupt request line"},
+            {"label": "b", "text": "device driver"},
+            {"label": "c", "text": "interrupt handler"},
+            {"label": "d", "text": "all of the mentioned"}
+        ],
+        "answer": "c"
+    },
+    {
+        "question_no": 147,
+        "question": "In general the two interrupt request lines are ____________",
+        "options": [
+            {"label": "a", "text": "maskable & non maskable interrupts"},
+            {"label": "b", "text": "blocked & non maskable interrupts"},
+            {"label": "c", "text": "maskable & blocked interrupts"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "a"
+    },
+    {
+        "question_no": 148,
+        "question": "The _________ are reserved for events such as unrecoverable memory errors.",
+        "options": [
+            {"label": "a", "text": "non maskable interrupts"},
+            {"label": "b", "text": "blocked interrupts"},
+            {"label": "c", "text": "maskable interrupts"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "a"
+    },
+    {
+        "question_no": 149,
+        "question": "The ________ can be turned off by the CPU before the execution of critical instruction sequences that must not be interrupted.",
+        "options": [
+            {"label": "a", "text": "nonmaskable interrupt"},
+            {"label": "b", "text": "blocked interrupt"},
+            {"label": "c", "text": "maskable interrupt"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "c"
+    },
+    {
+        "question_no": 150,
+        "question": "The __________ is used by device controllers to request service.",
+        "options": [
+            {"label": "a", "text": "nonmaskable interrupt"},
+            {"label": "b", "text": "blocked interrupt"},
+            {"label": "c", "text": "maskable interrupt"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "c"
+    },
+    {
+        "question_no": 151,
+        "question": "The interrupt vector contains ____________",
+        "options": [
+            {"label": "a", "text": "the interrupts"},
+            {"label": "b", "text": "the memory addresses of specialized interrupt handlers"},
+            {"label": "c", "text": "the identifiers of interrupts"},
+            {"label": "d", "text": "the device addresses"}
+        ],
+        "answer": "b"
+    },
+    {
+        "question_no": 152,
+        "question": "Division by zero, accessing a protected or non existent memory address, or attempting to execute a privileged instruction from user mode are all categorized as ________",
+        "options": [
+            {"label": "a", "text": "errors"},
+            {"label": "b", "text": "exceptions"},
+            {"label": "c", "text": "interrupt handlers"},
+            {"label": "d", "text": "all of the mentioned"}
+        ],
+        "answer": "b"
+    },
+    {
+        "question_no": 153,
+        "question": "For large data transfers, _________ is used.",
+        "options": [
+            {"label": "a", "text": "dma"},
+            {"label": "b", "text": "programmed I/O"},
+            {"label": "c", "text": "controller register"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "a"
+    },
+    {
+        "question_no": 154,
+        "question": "A character stream device transfers ____________",
+        "options": [
+            {"label": "a", "text": "bytes one by one"},
+            {"label": "b", "text": "block of bytes as a unit"},
+            {"label": "c", "text": "with unpredictable response times"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "a"
+    },
+    {
+        "question_no": 155,
+        "question": "A block device transfers ____________",
+        "options": [
+            {"label": "a", "text": "bytes one by one"},
+            {"label": "b", "text": "block of bytes as a unit"},
+            {"label": "c", "text": "with unpredictable response times"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "b"
+    },
+    {
+        "question_no": 156,
+        "question": "What is a dedicated device?",
+        "options": [
+            {"label": "a", "text": "opposite to a sharable device"},
+            {"label": "b", "text": "same as a sharable device"},
+            {"label": "c", "text": "can be used concurrently by several processes"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "a"
+    },
+    {
+        "question_no": 157,
+        "question": "A keyboard is an example of a device that is accessed through a __________ interface.",
+        "options": [
+            {"label": "a", "text": "block stream"},
+            {"label": "b", "text": "set of blocks"},
+            {"label": "c", "text": "character stream"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "c"
+    },
+    {
+        "question_no": 158,
+        "question": "In polling ____________",
+        "options": [
+            {"label": "a", "text": "busy – wait cycles wait for I/O from device"},
+            {"label": "b", "text": "interrupt handler receives interrupts"},
+            {"label": "c", "text": "interrupt-request line is triggered by I/O device"},
+            {"label": "d", "text": "all of the mentioned"}
+        ],
+        "answer": "a"
+    },
+    {
+        "question_no": 159,
+        "question": "A non blocking system call _________________",
+        "options": [
+            {"label": "a", "text": "halts the execution of the application for an extended time"},
+            {"label": "b", "text": "does not halt the execution of the application"},
+            {"label": "c", "text": "does not block the interrupts"},
+            {"label": "d", "text": "none of the mentioned"}
+        ],
+        "answer": "b"
+    },
+    {
+        "question_no": 160,
+        "question": "An asynchronous call ____________",
+        "options": [
+            {"label": "a", "text": "returns immediately, without waiting for the I/O to complete"},
+            {"label": "b", "text": "does not return immediately and waits for the I/O to complete"},
+            {"label": "c", "text": "consumes a lot of time"},
+            {"label": "d", "text": "is too slow"}
+        ],
+        "answer": "a"
+    },
     {
     "question_no": 161,
     "question": "The primary function of device drivers is to",

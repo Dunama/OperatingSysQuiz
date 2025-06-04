@@ -28,9 +28,7 @@ def signup():
 @auth_bp.route("/login")
 def login():
     try:
-        if not google.authorized:
-            return redirect(url_for("google.login"))
-        return redirect(url_for("auth.callback"))
+        return render_template('login.html')
     except Exception as e:
         current_app.logger.error(f"Login error: {str(e)}")
         return jsonify({"error": str(e)}), 500
