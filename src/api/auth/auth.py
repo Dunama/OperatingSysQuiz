@@ -12,7 +12,7 @@ google_bp = make_google_blueprint(
     client_id = os.getenv("GOOGLE_CLIENT_ID"),
     client_secret = os.getenv("GOOGLE_CLIENT_SECRET"),
     scope = ["profile","email"],
-    redirect_to = "auth.callback"
+    redirect_url = os.getenv("GOOGLE_REDIRECT_URI")  # Use the environment variable
 )
 
 @auth_bp.route("/signup")
