@@ -28,7 +28,7 @@
                 <div class="space-y-6">
                     <!-- Google Sign Up Button -->
                     <div>
-                        <a href="{{ url_for('google.login') }}" 
+                        <a href="{{ url_for('auth.googleLogin') }}" 
                            class="group relative w-full flex justify-center py-2 sm:py-3 px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 ease-in-out transform hover:scale-105">
                             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                                 <img src="{{ url_for('static', filename='images/googleIcon.png') }}" alt="Google" class="h-5 w-5 sm:h-6 sm:w-6">
@@ -36,6 +36,15 @@
                             Sign up with Google
                         </a>
                     </div>
+                     <!-- Sign In Link -->
+                <div class="mt-6 text-center">
+                    <p class="text-xs sm:text-sm text-gray-600">
+                        Already have an account?
+                        <a href="{{ url_for('auth.login') }}" class="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200">
+                            Sign in here
+                        </a>
+                    </p>
+                </div>
 
                     <!-- Divider -->
                     <div class="relative">
@@ -98,16 +107,18 @@
                         </ul>
                     </div>
                 </div>
+            </div>
 
-                <!-- Sign In Link -->
-                <div class="mt-6 text-center">
-                    <p class="text-xs sm:text-sm text-gray-600">
-                        Already have an account?
-                        <a href="{{ url_for('auth.login') }}" class="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200">
-                            Sign in here
-                        </a>
-                    </p>
-                </div>
+            <!-- Demo Buttons for Quiz and Study & Practice -->
+            <div class="flex flex-col gap-4 mt-8">
+                <button id="quiz-btn" class="w-full bg-indigo-500 text-white py-2 rounded relative">
+                    Start Quiz
+                    <span class="absolute top-2 right-4 text-yellow-400"><i class="fas fa-lock"></i></span>
+                </button>
+                <button id="study-btn" class="w-full bg-green-500 text-white py-2 rounded relative">
+                    Question Bank
+                    <span class="absolute top-2 right-4 text-yellow-400"><i class="fas fa-lock"></i></span>
+                </button>
             </div>
 
             <!-- Terms and Privacy -->
@@ -130,20 +141,5 @@
         </div>
     </div>
 
-    <script>
-        // Show loading overlay when Google sign-up is clicked
-        document.querySelector('a[href*="google.login"]').addEventListener('click', function() {
-            document.getElementById('loading-overlay').classList.remove('hidden');
-            document.getElementById('loading-overlay').classList.add('flex');
-        });
-
-        // Handle page visibility changes to hide loading if user comes back
-        document.addEventListener('visibilitychange', function() {
-            if (document.visibilityState === 'visible') {
-                document.getElementById('loading-overlay').classList.add('hidden');
-                document.getElementById('loading-overlay').classList.remove('flex');
-            }
-        });
-    </script>
 </body>
 </html>

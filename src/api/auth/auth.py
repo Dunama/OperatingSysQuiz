@@ -1,81 +1,48 @@
-from flask import Blueprint, redirect, url_for, jsonify, session, current_app, render_template
-from flask_dance.contrib.google import make_google_blueprint, google
-import os
-from src.db.core import db
-from src.db.models.quiz_db import User as UserModel
+from flask import Blueprint, redirect, url_for, render_template, session
+from authlib.integrations.flask_client import OAuth
+import json
 
 
 auth_bp = Blueprint('auth', __name__)
+appConfig = {
+    "OAUTH2_CLIENT_ID": "883508464308-i5uf96m77mhubdfaqkqa4qc92i1nng27.apps.googleusercontent.com",
+    "OAUTH2_CLIENT_SECRET": "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",
+    "OAUTH2_METADATA_URL": "https://accounts.google.com/.well-known/openid-configuration",
+    "FLASK_PORT": 5000
+}
+oauth = OAuth()
 
-# Google config 
-google_bp = make_google_blueprint(
-    client_id=os.getenv("GOOGLE_CLIENT_ID"),
-    client_secret=os.getenv("GOOGLE_CLIENT_SECRET"),
-    scope=["profile", "email"],
-    redirect_to="auth.callback"  # Redirect to your callback route
-)
 
-@auth_bp.route("/signup")
-def signup():
-    try:
-        if google.authorized:
-            return redirect(url_for("auth.callback"))
-        return render_template('signup.html')
-    except Exception as e:
-        current_app.logger.error(f"Signup error: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+def init_oauth(app):
+    oauth.init_app(app)
+    oauth.register(
+        "myApp",
+        client_id=appConfig.get("OAUTH2_CLIENT_ID"),
+        client_secret=appConfig.get("OAUTH2_CLIENT_SECRET"),
+        server_metadata_url=appConfig.get("OAUTH2_METADATA_URL"),
+        client_kwargs={
+            "scope": "openid email profile"
+        }
+    )
 
-@auth_bp.route("/login")
+@auth_bp.route('/')
+def home():
+    return render_template('signup.html', session=session.get("user"),
+                           pretty = json.dumps(session.get("user"), indent=4))
+
+
+@auth_bp.route("/google-login")
+def googleLogin():
+    return oauth.myApp.authorize_redirect(redirect_uri=url_for("auth.googleCallback", _external=True))        
+
+
+@auth_bp.route("/signin-google")
+def googleCallback():
+    token = oauth.myApp.authorize_access_token()
+    session["user"] = token
+    return redirect(url_for("auth.home"))
+
+@auth_bp.route('/login')
 def login():
-    try:
-        return render_template('login.html')
-    except Exception as e:
-        current_app.logger.error(f"Login error: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+    return render_template('login.html')
 
-@auth_bp.route("/callback")
-def callback():
-    try:
-        if not google.authorized:
-            current_app.logger.error("Google not authorized in callback")
-            return jsonify({"error": "failed to login"}), 401
-            
-        # Get user info from Google
-        user_info = google.get("/oauth2/v3/userinfo")
-        if not user_info.ok:
-            current_app.logger.error(f"Failed to get user info: {user_info.text}")
-            return jsonify({"error": "failed to get user info"}), 401
-            
-        google_info = user_info.json()
-        email = google_info.get("email")
-        name = google_info.get("name")
-        
-        if not email or not name:
-            return jsonify({"error": "Invalid user info from google"}), 400
-
-        # Find or create user
-        user_record = UserModel.query.filter_by(email=email).first()
-        try:
-            if not user_record:
-                user_record = UserModel(name=name, email=email)
-                db.session.add(user_record)
-                db.session.commit()
-        except Exception as e:
-            db.session.rollback()
-            current_app.logger.error(f"Database error: {str(e)}")
-            return jsonify({"error": f"Database error: {str(e)}"}), 500
-
-        # Store user info in session
-        session["user_id"] = user_record.id
-     
-        return jsonify({
-            "success": True, 
-            "user": {
-                "id": user_record.id,
-                "name": user_record.name
-            }
-        }), 200
-            
-    except Exception as e:
-        current_app.logger.error(f"Callback error: {str(e)}")
-        return jsonify({"error": f"Server error: {str(e)}"}), 500
