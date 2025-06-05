@@ -1,12 +1,9 @@
-# Environment variables
+# Environment variables and secrets
 .env
 .env.*
 !.env.example
-
-# Secrets and keys
 *.pem
 *.key
-*.crt
 
 # Python
 __pycache__/
@@ -14,6 +11,7 @@ __pycache__/
 *.pyc
 .Python
 *.so
+.pytest_cache/
 
 # Database
 *.db
@@ -36,10 +34,11 @@ env/
 .DS_Store
 Thumbs.db
 
-# Logs
+# Logs and temp files
 *.log
+*.tmp
 
-# Build
+# Build and dist
 dist/
 build/
 *.egg-info/
