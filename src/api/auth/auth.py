@@ -15,7 +15,7 @@ def init_oauth(app):
         "myApp",
         client_id=os.getenv("CLIENT_ID"),    
         client_secret=os.getenv("CLIENT_SECRET"), 
-        server_metadata_url=os.getenv("OAUTH2_METADATA_URL"),
+        server_metadata_url=os.getenv("M_URL"),
         client_kwargs={
             "scope": "openid email profile"
         }
