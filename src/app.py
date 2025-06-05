@@ -13,8 +13,8 @@ def create_app():
                 static_folder='static',
                 template_folder='templates')
     app.config.from_object(Config)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz_app.db'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SQLALCHEMY_DATABASE_URI'] 
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] 
     
     # Import models here to avoid circular imports
     from src.db.models.users import User
