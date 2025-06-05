@@ -1,14 +1,12 @@
-from flask import Blueprint, redirect, url_for, render_template, session
+from flask import Blueprint, redirect, url_for, render_template, session, flash
 from authlib.integrations.flask_client import OAuth
+from functools import wraps
 import json
 import os
 
+from src.api.models.paystack import is_user_pro
+
 auth_bp = Blueprint('auth', __name__)
-appConfig = {
-    "OAUTH2_CLIENT_ID": os.getenv("OAUTH2_CLIENT_ID"),
-    "OAUTH2_CLIENT_SECRET": os.getenv("OAUTH2_CLIENT_SECRET"),
-    "OAUTH2_METADATA_URL": os.getenv("OAUTH2_METADATA_URL")
-}
 
 oauth = OAuth()
 
@@ -17,13 +15,32 @@ def init_oauth(app):
     oauth.init_app(app)
     oauth.register(
         "myApp",
-        client_id=appConfig.get("OAUTH2_CLIENT_ID"),
-        client_secret=appConfig.get("OAUTH2_CLIENT_SECRET"),
-        server_metadata_url=appConfig.get("OAUTH2_METADATA_URL"),
+        client_id=os.getenv("OAUTH2_CLIENT_ID"),
+        client_secret=os.getenv("OAUTH2_CLIENT_SECRET"),
+        server_metadata_url=os.getenv("OAUTH2_METADATA_URL"),
         client_kwargs={
             "scope": "openid email profile"
         }
     )
+
+def pro_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        user = session.get('user')
+        if not user:
+            flash('Please log in to access this feature')
+            return redirect(url_for('auth.login'))
+        
+        email = user.get('email')
+        pro_status = session.get('user_pro_status', False)
+        
+        if not email or (not is_user_pro(email) and not pro_status):
+            flash('This feature requires a pro subscription')
+            return redirect(url_for('auth.login'))
+        
+        print(f"Pro access granted for {email}")  # Debug log
+        return f(*args, **kwargs)
+    return decorated_function
 
 @auth_bp.route('/')
 def home():
@@ -44,5 +61,11 @@ def googleCallback():
 
 @auth_bp.route('/login')
 def login():
-    return render_template('login.html')
+    user = session.get("user")
+    pro = False
+    if user and user.get("email"):
+        email = user.get("email")
+        pro = is_user_pro(email) or session.get('user_pro_status', False)
+        print(f"Login pro status for {email}: {pro}")  # Debug log
+    return render_template('login.html', pro=pro)
 

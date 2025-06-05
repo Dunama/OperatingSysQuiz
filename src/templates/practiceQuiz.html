@@ -7,19 +7,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 min-h-screen">
-    <div class="container mx-auto px-2 py-6 sm:px-4 sm:py-8 max-w-full sm:max-w-2xl md:max-w-3xl">
-        <!-- Extra spacer for lower placement -->
-        <div class="mt-6 sm:mt-10"></div>
-        <!-- Back Button -->
-        <button onclick="window.history.back()" class="mb-4 sm:mb-6 flex items-center bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-3 sm:px-5 rounded-lg text-xs sm:text-base shadow transition-colors">
-            <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-            Back
-        </button>
-        <div class="mb-4 sm:mb-6 text-center">
-            <h1 class="text-xl sm:text-3xl font-bold text-gray-800">Comprehensive Test</h1>
-            <p class="text-xs sm:text-base text-gray-600 mt-1 sm:mt-2">You have 60 minutes to complete all 70 questions</p>
+    <!-- Back Button with Background -->
+    <div class="fixed top-0 left-0 right-0 h-12 bg-gradient-to-b from-white to-transparent z-40"></div>
+    <button onclick="window.history.back()" 
+            class="fixed top-2 left-2 z-50 flex items-center bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-3 rounded-lg text-sm shadow-lg transition-colors border border-gray-200">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back
+    </button>
+
+    <div class="container mx-auto px-4 py-12 max-w-3xl">  <!-- Updated max-width and padding -->
+        <!-- Header -->
+        <div class="text-center mb-6"> <!-- Reduced from mb-8 -->
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800">Practice Quiz</h1>
+            <p class="text-base sm:text-lg text-gray-600 mt-2">Test your knowledge with full-length practice questions</p>
         </div>
         
         <div id="loading" class="text-center py-8 sm:py-10">
