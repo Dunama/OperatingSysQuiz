@@ -6,11 +6,9 @@
 # Python
 __pycache__/
 *.py[cod]
-*$py.class
+*.pyc
 .Python
-build/
-dist/
-*.egg-info/
+*.so
 
 # Database
 *.db
@@ -18,10 +16,10 @@ dist/
 mentors.db
 
 # Virtual Environment
-.venv/
 venv/
-env/
+.venv/
 ENV/
+env/
 
 # IDE
 .vscode/
@@ -29,9 +27,14 @@ ENV/
 *.swp
 *.swo
 
+# OS
+.DS_Store
+Thumbs.db
+
 # Logs
 *.log
 
-# Local files
-*.DS_Store
-Thumbs.db
+# Build
+dist/
+build/
+*.egg-info/
