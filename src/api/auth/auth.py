@@ -13,8 +13,8 @@ def init_oauth(app):
     oauth.init_app(app)
     oauth.register(
         "myApp",
-        client_id=os.getenv("OAUTH2_CLIENT_ID"),    # Use placeholder env var
-        client_secret=os.getenv("OAUTH2_CLIENT_SECRET"), # Use placeholder env var
+        client_id=os.getenv("OAUTH2_CLIENT_ID"),    
+        client_secret=os.getenv("OAUTH2_CLIENT_SECRET"), 
         server_metadata_url=os.getenv("OAUTH2_METADATA_URL"),
         client_kwargs={
             "scope": "openid email profile"
