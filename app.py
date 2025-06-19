@@ -10,8 +10,8 @@ from src.api.auth.auth import auth_bp, init_oauth
 
 def create_app():
     app = Flask(__name__,
-                static_folder='static',
-                template_folder='templates')
+                static_folder='src/static',
+                template_folder='src/templates')
     app.config.from_object(Config)
     app.config['SQLALCHEMY_DATABASE_URI'] 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] 
@@ -25,12 +25,8 @@ def create_app():
     init_oauth(app)
     
     # Only create migrate in development
-    if not os.getenv("VERCEL_ENV"):
-        migrate = Migrate(app, db)
-    
-    @app.route('/')
-    def index():
-        return render_template('signup.html')
+    migrate = Migrate(app, db)
+
 
     with app.app_context():
         # Import blueprints
@@ -39,6 +35,8 @@ def create_app():
         from src.api.models.practiceQuiz import practice_bp
         from src.api.models.questionBank import comprehensive_bp
         from src.api.models.paystack import paystack_bp
+        from src.api.admin.admin import admin_bp
+
 
         # Register blueprints without url_prefix
         app.register_blueprint(quiz_bp)
@@ -47,12 +45,7 @@ def create_app():
         app.register_blueprint(comprehensive_bp)
         app.register_blueprint(auth_bp)
         app.register_blueprint(paystack_bp, url_prefix='/paystack')
-
-        # Add error handlers
-        @app.errorhandler(404)
-        def not_found_error(error):
-            print(f"404 error: {error}")
-            return redirect(url_for('auth.login'))
+        app.register_blueprint(admin_bp, url_prefix='/admin')
 
     return app  
 

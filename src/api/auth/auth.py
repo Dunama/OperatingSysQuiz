@@ -54,8 +54,24 @@ def googleLogin():
 @auth_bp.route("/signin-google")
 def googleCallback():
     token = oauth.myApp.authorize_access_token()
-    session["user"] = token
-    return redirect(url_for("auth.home"))
+    userinfo = token.get("userinfo") or token
+    email = userinfo.get("email")
+    from src.db.models.users import User
+    from src.db.core import db
+
+    # Check if user exists, else create
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        user = User(email=email, is_pro=False)
+        db.session.add(user)
+        db.session.commit()
+
+    # Save user info in session
+    session["user"] = {"email": email}
+    session["user_pro_status"] = user.is_pro
+
+    # Redirect to login page after successful signup/login
+    return redirect(url_for("auth.login"))
 
 @auth_bp.route('/login')
 def login():
@@ -65,5 +81,8 @@ def login():
         email = user.get("email")
         pro = is_user_pro(email) or session.get('user_pro_status', False)
         print(f"Login pro status for {email}: {pro}")  # Debug log
+    else:
+        # If not logged in, redirect to signup
+        return redirect(url_for("auth.home"))
     return render_template('login.html', pro=pro)
 

@@ -1,4 +1,4 @@
-from src.app import create_app
+from cs_205.app import create_app
 from src.db.core import db
 from src.db.models.quiz_db import Questions, Options, Answers
 from src.db.models.quiz_questions import quiz_questions

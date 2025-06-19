@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, render_template_string, request, make_response
+from flask import Blueprint, jsonify, render_template_string, request, make_response, current_app, abort
 from src.db.models.users import User
 from src.db.core import db
 from datetime import datetime
@@ -59,6 +59,8 @@ def get_all_oauth_users():
             'error': str(e),
             'message': 'Failed to retrieve user data'
         }
+
+
 
 @admin_bp.route('/users')
 def view_all_users():
@@ -262,6 +264,7 @@ def view_all_users():
     return response
 
 @admin_bp.route('/users/api')
+
 def get_users_api():
     """
     Admin API endpoint to get all OAuth2 users as JSON
