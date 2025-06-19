@@ -92,8 +92,6 @@ def view_all_users():
             body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
             .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
             .header { text-align: center; margin-bottom: 30px; }
-            .debug-section { background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
-            .debug-section h4 { margin-top: 0; color: #856404; }
             .stats { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; margin-bottom: 30px; }
             .stats h3 { margin-top: 0; color: white; }
             .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 15px; }
@@ -123,17 +121,8 @@ def view_all_users():
     <body>
         <div class="container">
             <div class="header">
-                <h1>🔧 Admin Dashboard - Google OAuth2 Users</h1>
+                <h1>CSC 205 ADMIN MANAGEMENT BOARD</h1>
             </div>
-            
-            <div class="debug-section">
-                <h4>🐛 Debug Information</h4>
-                <p><strong>Total Users in Database:</strong> {{ total_users }}</p>
-                <p><strong>Query Time:</strong> {{ generated_at }}</p>
-                <p><strong>Issue:</strong> If you signed up but don't see your email here, the OAuth2 callback isn't saving users properly.</p>
-                <p><strong>Next Step:</strong> Check server logs for OAuth2 errors, or try signing up again with a new email.</p>
-            </div>
-            
             <!-- Display summary statistics -->
             <div class="stats">
                 <h3>📊 User Statistics</h3>
