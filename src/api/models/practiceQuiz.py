@@ -6,7 +6,6 @@ import random
 practice_bp = Blueprint('practice', __name__)  # Remove url_prefix
 
 @practice_bp.route('/api/practice/questions', methods=['GET'])
-@pro_required
 def practice_questions():
     try:
         return render_template('practiceQuiz.html')
@@ -15,7 +14,6 @@ def practice_questions():
         return redirect(url_for('auth.login'))
 
 @practice_bp.route('/api/practice/questions/submit', methods=['GET', 'POST'])
-@pro_required
 def get_practice_questions():
     try:
         if request.method == 'GET':

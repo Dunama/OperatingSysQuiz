@@ -5,7 +5,6 @@ from src.db.models.quiz_db import Questions, Answers, Options, Response
 comprehensive_bp = Blueprint('comprehensive', __name__)  # Remove url_prefix
 
 @comprehensive_bp.route('/api/comprehensive/all-questions', methods=['GET'])
-@pro_required
 def all_questions():
     try:
         return render_template('questionBank.html')
@@ -14,7 +13,6 @@ def all_questions():
         return redirect(url_for('auth.login'))
 
 @comprehensive_bp.route('/api/comprehensive/all-questions/submit', methods=['GET', 'POST'])
-@pro_required
 def comprehensive_question():
     '''view comprehensive questions'''
     try:
@@ -83,7 +81,6 @@ def comprehensive_question():
         return jsonify({'error': str(e)}), 500
 
 @comprehensive_bp.route('/api/comprehensive/answer/<int:question_no>')
-@pro_required
 def get_question_answer(question_no):
     '''Get the correct answer for a specific question'''
     question = Questions.query.filter_by(question_no=question_no).first()
