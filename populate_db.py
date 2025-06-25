@@ -1,4 +1,4 @@
-from cs_205.app import create_app
+from app import create_app
 from src.db.core import db
 from src.db.models.quiz_db import Questions, Options, Answers
 from src.db.models.quiz_questions import quiz_questions
@@ -27,6 +27,9 @@ def populate_database():
             
             # Create options
             for option_data in question_data['options']:
+                if 'text' not in option_data:
+                    print(f"Missing 'text' in option: {option_data} (question_no: {question_data['question_no']})")
+                    continue  # Skip this option
                 option = Options(
                     question_id=question.question_id,
                     label=option_data['label'],
