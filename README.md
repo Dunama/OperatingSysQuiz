@@ -1,14 +1,17 @@
-# CS205 Quiz Application
+# CSC201 Python Quiz Application
 
-A web-based quiz application for Operating Systems course.
+A web-based quiz platform designed for the CSC201 (Python Programming) course.
 
-## Setup
+## Setup Instructions
 
-1. Clone the repository
-2. Create a virtual environment: `python -m venv venv`
-3. Activate virtual environment and install dependencies: `pip install -r requirements.txt`
-4. Set up environment variables in `.env` file:
-   # Example .env (do NOT use real secrets here)
+1. **Clone the repository**
+2. **Create a virtual environment:**  
+   `python -m venv venv`
+3. **Activate the virtual environment and install dependencies:**  
+   `pip install -r requirements.txt`
+4. **Configure environment variables:**  
+   Create a `.env` file in the project root with the following (replace placeholders with your values):
+   ```
    FLASK_APP=src.app
    FLASK_ENV=development
    DATABASE_URL=your_database_url
@@ -16,14 +19,19 @@ A web-based quiz application for Operating Systems course.
    OAUTH2_CLIENT_ID=your_google_client_id
    OAUTH2_CLIENT_SECRET=your_google_client_secret
    PAYSTACK_SECRET_KEY=your_paystack_key
-5. Run migrations: `flask db upgrade`
-6. Start server: `flask run`
+   ```
+5. **Run database migrations:**  
+   `flask db upgrade`
+6. **Start the development server:**  
+   `flask run`
 
 ## Features
-- Practice quizzes
-- Demo mode
-- Question bank
+
+- Python programming quizzes
+- Practice and demo modes
+- Question bank for CSC201 topics
 - Pro features with payment integration
 
 ## License
-MIT License - see LICENSE file
+
+MIT License – see the [LICENSE](LICENSE) file for details.
