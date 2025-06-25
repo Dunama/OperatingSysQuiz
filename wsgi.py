@@ -1,5 +1,6 @@
-# wsgi.py
-from app import app  # if your Flask app is created in app.py
+from app import create_app
+
+app = create_app()
 
 if __name__ == "__main__":
     app.run()
